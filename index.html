@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Manager</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/script.js" defer></script>
+  </head>
+  <body>
+    <!-- *****************************************************
+                        CREATE MODAL
+***************************************************** -->
+
+    <div id="create-modal" class="create-modal">
+      <div class="addContainer">
+        <i id="close" class="fas fa-times-circle"></i>
+        <h1>New Contact</h1>
+        <div class="form">
+          <div class="gender">
+            <div class="male">
+              <input
+                class="gender-checkbox-new"
+                type="checkbox"
+                id="male"
+                value="male"
+              />
+              <label for="male">male</label>
+            </div>
+            <div class="female">
+              <input
+                class="gender-checkbox-new"
+                type="checkbox"
+                id="female"
+                value="female"
+              />
+              <label for="female">female</label>
+            </div>
+          </div>
+
+          <input
+            id="firstName"
+            class="text-box"
+            type="text"
+            placeholder="First Name"
+            required
+          />
+          <input
+            id="lastName"
+            class="text-box"
+            type="text"
+            placeholder="Last Name"
+          />
+          <input
+            id="address"
+            class="text-box"
+            type="text"
+            placeholder="Address"
+          />
+          <input
+            id="zipCode"
+            class="text-box"
+            type="text"
+            placeholder="Zip Code"
+          />
+          <input id="city" class="text-box" type="text" placeholder="City" />
+          <input
+            id="phoneNumber"
+            class="text-box"
+            type="text"
+            placeholder="Phone Number"
+          />
+          <input id="email" class="text-box" type="text" placeholder="E-mail" />
+          <input
+            id="birthday"
+            class="text-box"
+            type="text"
+            placeholder="Birthday dd.mm.yyyy"
+          />
+          <div class="btn">
+            <input id="add-btn" class="add" value="Add" />
+            <input class="reset" type="reset" value="Reset" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *****************************************************
+                        UPDATE MODAL
+***************************************************** -->
+    <div id="update-modal" class="update-modal">
+      <div class="addContainer">
+        <i class="fas fa-times-circle" onclick="closeUpdateModal()"></i>
+        <h1>Edit Contact</h1>
+        <div class="form">
+          <div class="gender">
+            <div class="male">
+              <input
+                class="gender-checkbox"
+                type="checkbox"
+                id="update-male"
+                value="male"
+              />
+              <label for="male">male</label>
+            </div>
+            <div class="female">
+              <input
+                class="gender-checkbox"
+                type="checkbox"
+                id="update-female"
+                value="female"
+              />
+              <label for="female">female</label>
+            </div>
+          </div>
+          <div class="update-id" id="update-id"></div>
+          <input
+            id="update-firstName"
+            class="text-box"
+            type="text"
+            placeholder="First Name"
+            required
+          />
+          <input
+            id="update-lastName"
+            class="text-box"
+            type="text"
+            placeholder="Last Name"
+          />
+          <input
+            id="update-address"
+            class="text-box"
+            type="text"
+            placeholder="Address"
+          />
+          <input
+            id="update-zipCode"
+            class="text-box"
+            type="text"
+            placeholder="Zip Code"
+          />
+          <input
+            id="update-city"
+            class="text-box"
+            type="text"
+            placeholder="City"
+          />
+          <input
+            id="update-phoneNumber"
+            class="text-box"
+            type="text"
+            placeholder="Phone Number"
+          /><input
+            id="update-email"
+            class="text-box"
+            type="text"
+            placeholder="E-mail"
+          />
+          <input
+            id="update-birthday"
+            class="text-box"
+            type="text"
+            placeholder="Birthday dd.mm.yyyy"
+          />
+          <div class="btn">
+            <input
+              id="update-btn"
+              class="add"
+              value="Update"
+              onclick="updateContact()"
+            />
+            <input class="reset" type="reset" value="Reset" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *****************************************************
+                          MAIN
+***************************************************** -->
+    <div id="main" class="main">
+      <div class="top">
+        <h1 class="title">Contact Manager</h1>
+        <div class="btn-container">
+          <button id="new" class="new">New Contact</button>
+          <button class="load" id="load">Refresh</button>
+        </div>
+      </div>
+      <div id="contact-display" class="table-container"></div>
+    </div>
+    <!-- *****************************************************
+                          FOOTER
+***************************************************** -->
+    <footer id="footer">
+      <a href="https://www.fabiansuppan.at" target="blank">Fabian Suppan</a
+      ><br />2020
+    </footer>
+  </body>
+</html>
+<!-- *****************************************************
+                  HANDLEBARS TEMPLATE
+***************************************************** -->
+<script id="contact-body" type="text/x-handlebars-template">
+  <div id="contact{{id}}" class="contact">
+      <button id="{{id}}" class="accordion" onclick=collapse({{id}})>
+        <div id="firstName{{id}}">{{firstName}}</div>
+        <div id="lastName{{id}}">{{lastName}}</div>
+        <div class="id-box" id="id-box{{id}}">{{id}}</div>
+      </button>
+      <div class="contact-container">
+        <div id="modal{{id}}" class="contact-modal">
+          <div>Are you sure you want to delete<br>{{firstName}} {{lastName}}?</div>
+          <div id="btn{{id}}"" class="contact-modal-buttons">
+            <button id="yes{{id}}" class="yes-btn" onclick=deleteContact({{id}})>YES</button>
+            <button id="no{{id}}" class="no-btn" onclick=closeDeleteModal({{id}})>NO</button>
+          </div>
+        </div>
+          <div class="contact-details-container">
+            <div class="avatar"><img src="media/{{gender}}.png" alt="Picture"></div>
+            <div class="gender-text" id="gender{{id}}">{{gender}}</div>
+
+            <table class="contact-details-right">
+              <tr>
+                <th>Address:</th>
+                  <td id="address{{id}}">{{address}}</td>
+              </tr>
+              <tr>
+                <th>Zip Code:</th>
+                  <td id="zipCode{{id}}">{{zipCode}}</td>
+              </tr>
+              <tr>
+                <th>City:</th>
+                  <td id="city{{id}}">{{city}}</td>
+              </tr>
+              <tr>
+                <th>Phone:</th>
+                  <td id="phoneNumber{{id}}">{{phoneNumber}}</td>
+              </tr>
+              <tr>
+                <th>E-mail:</th>
+                  <td id="email{{id}}">{{email}}</td>
+              </tr>
+              <tr>
+                <th>Birthday:</th>
+                  <td id="birthday{{id}}">{{birthday}}</td>
+              </tr>
+            </table>
+          </div>
+
+        <div class="contact-btn-container">
+          <button id="edit-btn" class="edit-btn" onclick=openUpdateModal({{id}})><i class="fas fa-edit fa-2x"></i></button>
+          <button id="delete-btn" class="delete-btn" onclick=openDeleteModal({{id}})><i class="fas fa-trash fa-2x" ></i></button>
+        </div>
+      </div>
+   </div>
+</script>

@@ -1,0 +1,367 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100%;
+  background: linear-gradient(0deg, #f87d36, #ff3355) fixed;
+}
+
+/* MAIN ABOVE CONTACT TABLE */
+.main {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.top h1 {
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+  margin: 30px 0;
+}
+.btn-container {
+  display: flex;
+  width: 100vw;
+  min-width: 350px;
+  max-width: 500px;
+  height: fit-content;
+  padding: 0 5px;
+  text-align: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.new,
+.load {
+  font-size: 1.5rem;
+  border: none;
+  height: 40px;
+  width: 49%;
+  background-color: white;
+  outline: none;
+}
+.new:hover,
+.load:hover {
+  background-color: #3460f1;
+  color: white;
+  cursor: pointer;
+}
+
+/*NEW/UPDATE CONTACT MODAL*/
+.create-modal,
+.update-modal {
+  z-index: 5;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 18%;
+}
+.addContainer {
+  margin: 0 auto;
+  width: 350px;
+  height: 510px;
+  border-radius: 25px;
+  background: linear-gradient(0deg, #f87d36, #ff3355);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+  color: rgb(77, 77, 77);
+}
+.addContainer i {
+  align-self: flex-end;
+  margin-right: 15px;
+  color: white;
+  transition: color 0.2s ease;
+}
+.addContainer i:hover {
+  color: #3460f1;
+  cursor: pointer;
+}
+.addContainer h1 {
+  font-size: 2.5rem;
+  color: white;
+}
+.form {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.gender {
+  display: flex;
+  width: 250px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  margin-bottom: 10px;
+  margin-top: -10px;
+}
+.gender input {
+  align-self: center;
+}
+.gender input,
+label:hover {
+  cursor: pointer;
+}
+.addContainer .text-box {
+  width: 250px;
+  height: 30px;
+  margin-bottom: 7px;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+  background-color: lightgrey;
+}
+.addContainer input:focus {
+  outline: none;
+  background-color: white;
+}
+.btn {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-between;
+}
+.btn input {
+  background-color: white;
+  height: 30px;
+  width: 120px;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  border: none;
+  border-radius: 3px;
+  color: rgb(77, 77, 77);
+  transition: background-color 0.2s ease;
+}
+.add:hover {
+  background-color: #3460f1;
+  color: white;
+  cursor: pointer;
+}
+.reset:hover {
+  background-color: #3460f1;
+  color: white;
+  cursor: pointer;
+}
+
+/* CONTACT TABLE */
+.table-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  margin: auto;
+  min-width: 350px;
+  max-width: 500px;
+  padding: 5px 5px;
+  justify-content: flex-start;
+}
+/* CONTACT ACCORDION BUTTON */
+.accordion {
+  margin-top: 5px;
+  font-size: 1.5rem;
+  background-color: white;
+  width: 100%;
+  padding: 5px;
+  padding-left: 20px;
+  cursor: pointer;
+  border: none;
+  text-align: start;
+  outline: none;
+  transition: background-color 0.2s ease;
+  display: flex;
+}
+.id-box {
+  display: none;
+}
+.accordion div {
+  margin-right: 8px;
+}
+.accordion:hover {
+  background-color: #3460f1;
+  color: white;
+}
+.accordion:focus {
+  background-color: #3460f1;
+  color: white;
+}
+
+/* CONTACT DETAILS */
+.contact-container {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease;
+  position: relative;
+}
+.contact-btn-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: white;
+  justify-content: space-around;
+  border-top: solid lightgrey 2px;
+}
+.single-btn-container {
+  width: 50;
+}
+.contact-details-container {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  background-color: white;
+  font-size: 12px;
+  align-items: center;
+  max-height: 100%;
+  overflow: hidden;
+}
+.avatar {
+  width: 90px;
+  margin: 5px 20px;
+}
+.gender-text {
+  display: none;
+}
+.update-id {
+  display: none;
+}
+.contact-details-container img {
+  width: 70px;
+}
+.contact-details-left {
+  width: 10%;
+  margin: 5px 0;
+}
+.contact-details-right {
+  width: 90%;
+  margin: 5px 0;
+}
+.contact-details-container th {
+  width: 20%;
+  padding-left: 0px;
+}
+.contact-details-container td {
+  padding-right: 5%;
+}
+.edit-btn,
+.delete-btn {
+  display: flex;
+  background-color: red;
+  font-size: 0.5rem;
+  border-radius: 10px;
+  margin: 5px 0;
+  width: 100px;
+  height: 40px;
+  padding-top: 11px;
+  align-content: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+.edit-btn {
+  background-color: rgb(17, 230, 17);
+}
+.edit-btn:hover,
+.delete-btn:hover {
+  background-color: #3460f1;
+  color: white;
+}
+.edit-btn:focus,
+.delete-btn:focus {
+  background-color: #3460f1;
+  color: white;
+}
+
+/* DELETE MODAL */
+.contact-modal {
+  font-size: 1.2rem;
+  background-color: white;
+  z-index: 5;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 15px;
+  text-align: center;
+  justify-content: center;
+  display: none;
+  flex-direction: column;
+}
+.contact-modal-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0;
+}
+.contact-modal-buttons button {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  pointer-events: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+.yes-btn {
+  background-color: rgb(17, 230, 17);
+}
+.no-btn {
+  background-color: red;
+}
+.yes-btn:hover,
+.no-btn:hover {
+  background-color: #3460f1;
+  color: white;
+}
+
+/* FOOTER */
+footer {
+  margin: 15px auto;
+  color: white;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+/* ANCHORS */
+a {
+  transition: color 0.2s ease;
+}
+a:visited {
+  color: white;
+}
+a:hover {
+  color: #3460f1;
+}
+
+/*CLASS GETS ADDED TO MAIN & FOOTER
+WHEN CONTACT/UPDATE MODAL IS OPENED*/
+.blur {
+  background: rgb(0, 0, 0);
+  opacity: 0.5;
+  filter: Alpha(Opacity=50);
+  min-height: 50vh;
+}
+
+/*CLASS GETS ADDED TO CONTACT-DETAILS-CONTAINTER
+WHEN SINGLE CONTACT IS CLICKED*/
+.active {
+  border-bottom: solid black 2px;
+}
+
+/* CLASS GETS ADDED WHEN DELETE MODAL
+IS ACTIVE */
+.delete-active {
+  pointer-events: all;
+}
